@@ -1,6 +1,7 @@
 import React from "react";
 import { NavbarDemo } from "@/components/shared/Navbar";
 import Image from "next/image";
+import {RentForm} from "@/components/shared/RentForm";
 
 const page = () => {
   return (
@@ -26,7 +27,7 @@ const page = () => {
               revitalizante.
             </h2>
             <div className="h-36 bg-gray-300/50  backdrop-blur-sm  w-[1200px] mt-4 rounded-2xl">
-              
+                <RentForm />
             </div>
           </div>
         </div>
