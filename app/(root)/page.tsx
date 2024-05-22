@@ -26,7 +26,7 @@ const page = () => {
               alejados del bullicio urbano, en un entorno natural sereno y
               revitalizante.
             </h2>
-            <div className="h-36 bg-gray-300/50  backdrop-blur-sm  w-[1200px] mt-4 rounded-2xl">
+            <div className="my-10 bg-gray-300/50  backdrop-blur-sm  rounded-2xl">
                 <RentForm />
             </div>
           </div>

@@ -1,5 +1,8 @@
 import * as z from "zod";
 
 export const rentFormSchema = z.object({
-  username: z.string().min(2).max(50),
+  checkIn: z.date(),
+  checkOut: z.date(),
+  adults: z.number().min(1),
+  children: z.number().min(0),
 });
