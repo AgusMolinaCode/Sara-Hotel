@@ -13,6 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
@@ -69,7 +70,7 @@ export function RentForm() {
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
-                    className="text-center border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none"
+                    className="text-center w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none"
                   />
                 </div>
               </FormControl>
@@ -99,7 +100,7 @@ export function RentForm() {
                         new Date(startDate).setDate(startDate.getDate() + 1)
                       )
                     }
-                    className="text-center border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none"
+                    className="text-center w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none"
                   />
                 </div>
               </FormControl>
@@ -112,10 +113,57 @@ export function RentForm() {
             <PopoverTrigger className="w-full border border-black bg-slate-100/50 rounded-lg px-2 my-2 py-2 font-medium text-black">
               Open
             </PopoverTrigger>
-            <PopoverContent>Place content for the popover here.</PopoverContent>
+            <PopoverContent>
+              <FormLabel>Adults</FormLabel>
+              <FormField
+                control={form.control}
+                name="adults"
+                render={({ field }) => (
+                  <FormItem className=" space-y-0">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        onChange={(e) => {
+                          form.setValue("adults", parseInt(e.target.value));
+                        }}
+                        className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormDescription>Age 13 or above</FormDescription>
+              <FormLabel>Childrens</FormLabel>
+              <FormField
+                control={form.control}
+                name="children"
+                render={({ field }) => (
+                  <FormItem className=" space-y-0">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        onChange={(e) => {
+                          form.setValue("children", parseInt(e.target.value));
+                        }}
+                        className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormDescription>
+                Age 2-12. Free for children under 2.
+              </FormDescription>
+            </PopoverContent>
           </Popover>
         </div>
-        <Button className="px-2 my-2 py-2" type="submit">Submit</Button>
+        <Button className="px-2 my-2 py-2" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );
