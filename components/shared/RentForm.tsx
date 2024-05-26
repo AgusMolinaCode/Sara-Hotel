@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { set, z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,10 +32,29 @@ export function RentForm() {
       checkIn: new Date(),
       checkOut: new Date(),
       adults: 1,
-      children: 0,
+      children: [],
     },
   });
 
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "children",
+  });
+
+  const handleChildrenChange = (e) => {
+    const childrenCount = parseInt(e.target.value);
+    const currentChildrenCount = fields.length;
+
+    if (childrenCount > currentChildrenCount) {
+      for (let i = 0; i < childrenCount - currentChildrenCount; i++) {
+        append({ age: 0 });
+      }
+    } else {
+      for (let i = 0; i < currentChildrenCount - childrenCount; i++) {
+        remove(fields.length - 1);
+      }
+    }
+  };
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof rentFormSchema>) {
     // Do something with the form values.
@@ -140,21 +159,25 @@ export function RentForm() {
                 control={form.control}
                 name="children"
                 render={({ field }) => (
-                  <FormItem className=" space-y-0">
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="number"
-                        onChange={(e) => {
-                          form.setValue("children", parseInt(e.target.value));
-                        }}
-                        className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                  <Input
+                    {...field}
+                    type="number"
+                    onChange={(e) => {
+                      form.setValue("children", parseInt(e.target.value));
+                      handleChildrenChange(e);
+                    }}
+                  />
                 )}
               />
+              {fields.map((field, index) => (
+                <Controller
+                  key={field.id}
+                  control={form.control}
+                  name={`children[${index}].age`}
+                  render={({ field }) => <Input {...field} type="number" />}
+                />
+              ))}
+
               <FormDescription>
                 Age 2-12. Free for children under 2.
               </FormDescription>
