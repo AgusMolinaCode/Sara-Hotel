@@ -32,29 +32,11 @@ export function RentForm() {
       checkIn: new Date(),
       checkOut: new Date(),
       adults: 1,
-      children: [],
+      children: 0,
+      childrenAges: [],
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: "children",
-  });
-
-  const handleChildrenChange = (e) => {
-    const childrenCount = parseInt(e.target.value);
-    const currentChildrenCount = fields.length;
-
-    if (childrenCount > currentChildrenCount) {
-      for (let i = 0; i < childrenCount - currentChildrenCount; i++) {
-        append({ age: 0 });
-      }
-    } else {
-      for (let i = 0; i < currentChildrenCount - childrenCount; i++) {
-        remove(fields.length - 1);
-      }
-    }
-  };
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof rentFormSchema>) {
     // Do something with the form values.
@@ -64,6 +46,28 @@ export function RentForm() {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "childrenAges" as const,
+  });
+
+  const handleChildrenChange = (e: { target: { value: string; }; }) => {
+    const numChildren = parseInt(e.target.value);
+    const currentNumChildren = fields.length;
+
+    if (numChildren > currentNumChildren) {
+      for (let i = 0; i < numChildren - currentNumChildren; i++) {
+        append({ age: "" });
+      }
+    } else {
+      for (let i = 0; i < currentNumChildren - numChildren; i++) {
+        remove(i);
+      }
+    }
+
+    form.setValue("children", numChildren);
+  };
 
   return (
     <Form {...form}>
@@ -159,22 +163,42 @@ export function RentForm() {
                 control={form.control}
                 name="children"
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="number"
-                    onChange={(e) => {
-                      form.setValue("children", parseInt(e.target.value));
-                      handleChildrenChange(e);
-                    }}
-                  />
+                  <FormItem className=" space-y-0">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        onChange={handleChildrenChange}
+                        className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
               {fields.map((field, index) => (
-                <Controller
+                <FormField
                   key={field.id}
                   control={form.control}
-                  name={`children[${index}].age`}
-                  render={({ field }) => <Input {...field} type="number" />}
+                  name={`childrenAges[${index}]` as any} // Añade 'as any' aquí
+                  render={({ field }) => (
+                    <FormItem className=" space-y-0">
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="number"
+                          onChange={(e) => {
+                            form.setValue(
+                              `childrenAges[${index}]` as any, // Y aquí
+                              parseInt(e.target.value)
+                            );
+                          }}
+                          className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               ))}
 
