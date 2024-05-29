@@ -23,6 +23,8 @@ import { rentFormSchema } from "@/lib/validator";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export function RentForm() {
   // ...
@@ -33,15 +35,23 @@ export function RentForm() {
       checkOut: new Date(),
       adults: 1,
       children: 0,
-      childrenAges: [],
+      childrenAges: [0],
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof rentFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    let checkInStr = new Date(values.checkIn).toISOString().split("T")[0];
+    let checkOutStr = new Date(values.checkOut).toISOString().split("T")[0];
+
+    let url = `https://www.booking.com/hotel/ar/blackstone-country-villages.es.html?checkin=${checkInStr}&checkout=${checkOutStr}&group_adults=${values.adults}&group_children=${values.children}`;
+
+    // Agrega dinámicamente los parámetros de edad a la URL
+    values.childrenAges.forEach((age, index) => {
+      url += `&age=${age}`;
+    });
+
+    // Abre la URL en una nueva pestaña del navegador
+    window.open(url, "_blank");
   }
 
   const [startDate, setStartDate] = useState(new Date());
@@ -49,10 +59,10 @@ export function RentForm() {
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "childrenAges" as const,
+    name: "childrenAges" as never,
   });
 
-  const handleChildrenChange = (e: { target: { value: string; }; }) => {
+  const handleChildrenChange = (e: { target: { value: string } }) => {
     const numChildren = parseInt(e.target.value);
     const currentNumChildren = fields.length;
 
@@ -73,15 +83,22 @@ export function RentForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="grid md:grid-cols-4 gap-1 py-[0.05rem] px-1"
+        className="flex flex-col lg:flex-row gap-1 py-[0.05rem] px-1"
       >
         <FormField
           control={form.control}
           name="checkIn"
           render={({ field }) => (
-            <FormItem className=" space-y-0">
+            <FormItem className=" space-y-0 relative">
               <FormControl>
                 <div className="grid w-full overflow-hidden rounded-lg bg-grey-50  py-2">
+                  <Image
+                    src="/icons/calendar2.svg"
+                    alt="calendar"
+                    width={22}
+                    height={22}
+                    className="m-auto absolute z-10 top-[1.1rem] left-6"
+                  />
                   <DatePicker
                     selected={field.value as Date}
                     onChange={(date: Date) => {
@@ -105,9 +122,16 @@ export function RentForm() {
           control={form.control}
           name="checkOut"
           render={({ field }) => (
-            <FormItem className=" space-y-0">
+            <FormItem className=" space-y-0 relative">
               <FormControl>
                 <div className="grid w-full overflow-hidden rounded-lg bg-grey-50 py-2">
+                  <Image
+                    src="/icons/calendar2.svg"
+                    alt="calendar"
+                    width={22}
+                    height={22}
+                    className="m-auto absolute z-10 top-[1.1rem] left-6"
+                  />
                   <DatePicker
                     selected={field.value as Date}
                     onChange={(date: Date) => {
@@ -133,8 +157,17 @@ export function RentForm() {
         />
         <div className="space-y-0">
           <Popover>
-            <PopoverTrigger className="w-full border border-black bg-slate-100/50 rounded-lg px-2 my-2 py-2 font-medium text-black">
-              Open
+            <PopoverTrigger className="w-full lg:w-[280px] flex justify-center lg:pl-10 border border-black bg-slate-100/50 rounded-lg px-2 my-2 py-2 font-medium text-black relative">
+              <Image
+                src="/icons/user2.svg"
+                alt="person"
+                width={26}
+                height={26}
+                className="absolute z-10 top-[0.4rem] left-5 lg:left-6"
+              />
+              {`${form.watch("adults") || 0} adults - ${
+                form.watch("children") || 0
+              } childrens`}
             </PopoverTrigger>
             <PopoverContent>
               <FormLabel>Adults</FormLabel>
@@ -157,7 +190,7 @@ export function RentForm() {
                   </FormItem>
                 )}
               />
-              <FormDescription>Age 13 or above</FormDescription>
+              <FormDescription>Age 12 or above</FormDescription>
               <FormLabel>Childrens</FormLabel>
               <FormField
                 control={form.control}
@@ -176,41 +209,69 @@ export function RentForm() {
                   </FormItem>
                 )}
               />
+              <FormDescription>Children under 12 years.</FormDescription>
               {fields.map((field, index) => (
-                <FormField
-                  key={field.id}
-                  control={form.control}
-                  name={`childrenAges[${index}]` as any} // Añade 'as any' aquí
-                  render={({ field }) => (
-                    <FormItem className=" space-y-0">
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="number"
-                          onChange={(e) => {
-                            form.setValue(
-                              `childrenAges[${index}]` as any, // Y aquí
-                              parseInt(e.target.value)
-                            );
-                          }}
-                          className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div key={field.id} className="space-y-0">
+                  <FormLabel>Age</FormLabel>
+                  <FormField
+                    key={field.id}
+                    control={form.control}
+                    name={`childrenAges[${index}]` as any} // Añade 'as any' aquí
+                    render={({ field }) => (
+                      <FormItem className=" space-y-0">
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="number"
+                            onChange={(e) => {
+                              form.setValue(
+                                `childrenAges[${index}]` as any, // Y aquí
+                                parseInt(e.target.value)
+                              );
+                            }}
+                            className="w-full border border-black bg-slate-100/50 rounded-lg px-2 py-2 font-medium text-black focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-offset-transparent focus-visible:ring-black focus-visible:ring-opacity-50"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormDescription>from 1 to 12 years old.</FormDescription>
+                </div>
               ))}
-
-              <FormDescription>
-                Age 2-12. Free for children under 2.
-              </FormDescription>
             </PopoverContent>
           </Popover>
         </div>
-        <Button className="px-2 my-2 py-2" type="submit">
-          Submit
-        </Button>
+        <div>
+          <button
+            type="submit"
+            className="group hidden relative lg:inline-flex h-12 w-12 mt-[0.30rem] items-center justify-center overflow-hidden rounded-full bg-neutral-950 font-medium text-neutral-200 transition-all duration-300 hover:w-32"
+          >
+            <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
+              Buscar
+            </div>
+            <div className="absolute right-3.5">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+              >
+                <path
+                  d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </button>
+          <Button className="lg:hidden w-full h-10 mb-2">
+            Buscar
+          </Button>
+        </div>
       </form>
     </Form>
   );
