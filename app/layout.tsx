@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import MobileNav from "@/components/shared/MobileNav";
+import { NavbarDemo } from "@/components/shared/Navbar";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -19,7 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <div className="flex justify-between ">
+          <h1 className="text-2xl md:text-3xl font-bold text-white absolute top-6 left-3 lg:left-20 flex justify-center z-10">
+            SM <span className="text-orange-400 pl-1">Cabins</span>
+          </h1>
+          <MobileNav />
+        </div>
+        <NavbarDemo />
+        {children}
+      </body>
     </html>
   );
 }
