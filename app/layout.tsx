@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import MobileNav from "@/components/shared/MobileNav";
 import { NavbarDemo } from "@/components/shared/Navbar";
+import Image from "next/image";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],

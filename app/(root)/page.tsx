@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { RentForm } from "@/components/shared/RentForm";
+import PresentationHeader from "@/components/shared/PresentationHeader";
 
 const page = () => {
   return (
@@ -37,11 +38,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="absolute -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#FFA900_100%)]">
-        <h1 className="text-5xl text-black font-bold text-center">
-          Our Services
-        </h1>
-      </div>
+      <PresentationHeader />
     </div>
   );
 };
