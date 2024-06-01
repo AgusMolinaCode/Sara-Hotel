@@ -2,10 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { RentForm } from "@/components/shared/RentForm";
 import PresentationHeader from "@/components/shared/PresentationHeader";
+import ServicesList from "@/components/shared/ServicesList";
 
 const page = () => {
   return (
-    <div className="">
+    <div className="bg-gray-100">
       <div className="relative">
         <Image
           src="/images/cabaña1.jpg" // replace with your image path
@@ -39,6 +40,7 @@ const page = () => {
         </div>
       </div>
       <PresentationHeader />
+      <ServicesList />
     </div>
   );
 };

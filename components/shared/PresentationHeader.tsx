@@ -4,8 +4,8 @@ import { InfiniteMovingCardsDemo } from "./InfiniteMovingCardsDemo";
 
 const PresentationHeader = () => {
   return (
-    <div className="bg-gray-100">
-      <div className="  rounded-lg shadow-md flex flex-col justify-center items-center ">
+    <div className="">
+      <div className="  rounded-lg shadow-md flex flex-col justify-center items-center px-3">
         <h1 className="text-3xl md:text-5xl max-w-xl text-gray-800 font-bold text-center mt-5 md:mt-10 border-b-4 border-orange-400 pb-4">
           Sara <span className="text-orange-400">Cabins</span> - Your Idyllic
           Escape in a Charming Village

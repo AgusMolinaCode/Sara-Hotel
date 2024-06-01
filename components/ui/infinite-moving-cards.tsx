@@ -7,15 +7,13 @@ import Image from "next/image";
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
-  speed = "fast",
+  speed = "slow",
   pauseOnHover = true,
   className,
 }: {
   items: {
-    quote: string;
     name: string;
-    title: string;
-    image: string; // Agrega esto
+    image: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -67,7 +65,7 @@ export const InfiniteMovingCards = ({
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "40s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+        containerRef.current.style.setProperty("--animation-duration", "150s");
       }
     }
   };
@@ -75,7 +73,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-8xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20  max-w-[90rem] overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
         className
       )}
     >
@@ -89,7 +87,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className=" max-w-full relative h-[16rem]"
+            className=" max-w-full relative "
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900)",
@@ -98,11 +96,11 @@ export const InfiniteMovingCards = ({
           >
             <div className="relative z-20 flex flex-row items-center">
               <Image
-                src={item.image} // Usa item.image como la src de la imagen
-                alt={`Imagen de ${item.name}`} // Usa item.name en la descripción de la imagen
-                width={500} // Reemplaza esto con el ancho de la imagen
-                height={500} // Reemplaza esto con la altura de la imagen
-                className=" object-fit object-center object-cover" // Asegura que la imagen tenga bordes redondeados para que se ajuste a la tarjeta
+                src={item.image}
+                alt={`Imagen de ${item.name}`}
+                width={500}
+                height={500}
+                className=" object-fit object-center object-cover h-[350px] rounded-xl"
               />
             </div>
           </li>
