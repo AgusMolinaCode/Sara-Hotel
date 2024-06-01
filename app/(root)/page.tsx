@@ -3,6 +3,7 @@ import Image from "next/image";
 import { RentForm } from "@/components/shared/RentForm";
 import PresentationHeader from "@/components/shared/PresentationHeader";
 import ServicesList from "@/components/shared/ServicesList";
+import ExperienceList from "@/components/shared/ExperienceList";
 
 const page = () => {
   return (
@@ -41,6 +42,7 @@ const page = () => {
       </div>
       <PresentationHeader />
       <ServicesList />
+      <ExperienceList />
     </div>
   );
 };

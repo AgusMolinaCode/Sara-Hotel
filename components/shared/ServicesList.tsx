@@ -19,39 +19,38 @@ const ServicesList = () => {
   // Aquí puedes definir los servicios que ofreces
   const services = [
     {
-      name: "Alojamiento Cómodo",
+      name: "Personalized Shirt",
       description:
-        "Disfruta de una cama cómoda y acogedora después de un largo día de aventuras.",
+        "We ensure your clothes are ready and organized for your stay.",
       icon: "/icons/t-shirt.svg",
     },
     {
-      name: "Actividades Deportivas",
+      name: "Sports Activities",
       description:
-        "Disfruta de actividades deportivas como el baloncesto y más en nuestras instalaciones.",
+        "Enjoy sports activities like basketball and more at our facilities.",
       icon: "/icons/basketball.svg",
     },
     {
-      name: "Proyecciones de Cine",
-      description:
-        "Relájate con nuestras proyecciones de cine nocturnas bajo las estrellas.",
+      name: "Movie Projections",
+      description: "Relax with our night movie projections under the stars.",
       icon: "/icons/cinema.svg",
     },
     {
-      name: "Naturaleza y Senderismo",
+      name: "Nature and Hiking",
       description:
-        "Explora los senderos naturales y disfruta de la belleza del bosque circundante.",
+        "Explore the natural trails and enjoy the beauty of the surrounding forest.",
       icon: "/icons/camera.svg",
     },
     {
-      name: "Bar y Restaurante",
+      name: "Resto-Bar",
       description:
-        "Disfruta de una selección de cervezas y comidas deliciosas en nuestro bar y restaurante.",
+        "Enjoy a selection of beers and delicious food at our bar and restaurant.",
       icon: "/icons/beer.svg",
     },
     {
-      name: "Transporte",
+      name: "Transportation",
       description:
-        "Ofrecemos servicios de transporte para facilitar tus viajes alrededor de la zona.",
+        "We offer transportation services to facilitate your travels around the area.",
       icon: "/icons/bus.svg",
     },
   ];
@@ -61,13 +60,15 @@ const ServicesList = () => {
       <h2 className="text-xl md:text-2xl font-semibold text-gray-600">
         Discover the services we offer
       </h2>
-      <h1 className="text-4xl text-orange-400 font-bold pt-8">OUR SERVICES</h1>
-      <div className="grid lg:grid-cols-2 gap-4 pt-16 justify-center place-items-center">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h1 className="text-4xl text-black font-bold pt-8 border-b-4 border-orange-400 max-w-[14.55rem]">
+        Our Services
+      </h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-16 justify-center place-items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex flex-col justify-center items-center space-y-4"
+              className="flex flex-col justify-center items-center space-y-6"
             >
               <Image
                 src={service.icon}
@@ -85,7 +86,7 @@ const ServicesList = () => {
             </div>
           ))}
         </div>
-        <div className="">
+        <div className="relative">
           <Carousel
             plugins={[plugin.current]}
             className="w-full max-w-6xl"
@@ -103,7 +104,7 @@ const ServicesList = () => {
                           alt={`Imagen ${index + 1}`}
                           width={500}
                           height={500}
-                          className="w-[500px] h-[500px] object-cover rounded-xl"
+                          className="w-full h-[350px] md:h-[550px] object-cover rounded-xl"
                         />
                       </div>
                     </div>
