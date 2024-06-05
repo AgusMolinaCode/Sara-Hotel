@@ -60,10 +60,10 @@ const ServicesList = () => {
       <h2 className="text-xl md:text-2xl font-semibold text-gray-600">
         Discover the services we offer
       </h2>
-      <h1 className="text-4xl text-black font-bold pt-8 border-b-4 border-orange-400 max-w-[14.55rem]">
+      <h1 className="text-4xl text-black font-bold pt-2 lg:pt-8 border-b-4 border-orange-400 max-w-[14.55rem]">
         Our Services
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-16 justify-center place-items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 lg:mt-16 justify-center place-items-center">
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, index) => (
             <div

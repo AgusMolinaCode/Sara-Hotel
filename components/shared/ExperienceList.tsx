@@ -8,10 +8,10 @@ const ExperienceList = () => {
       <h2 className="text-xl md:text-2xl font-semibold text-gray-600">
         Discover the experiences we offer
       </h2>
-      <h1 className="text-4xl text-black font-bold pt-8 border-b-4 border-orange-400 max-w-[18.8rem]">
+      <h1 className="text-4xl text-black font-bold pt-2 lg:pt-8 border-b-4 border-orange-400 max-w-[18.8rem]">
         Our Experiences
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:mt-14">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6 lg:mt-14">
         <LayoutGridDemo />
         <div className="hidden lg:block lg:col-span-1">
           {experiences.map((experience, index) => (

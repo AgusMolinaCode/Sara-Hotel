@@ -4,6 +4,7 @@ import { RentForm } from "@/components/shared/RentForm";
 import PresentationHeader from "@/components/shared/PresentationHeader";
 import ServicesList from "@/components/shared/ServicesList";
 import ExperienceList from "@/components/shared/ExperienceList";
+import Contact from "@/components/shared/Contact";
 
 const page = () => {
   return (
@@ -43,6 +44,7 @@ const page = () => {
       <PresentationHeader />
       <ServicesList />
       <ExperienceList />
+      <Contact />
     </div>
   );
 };
