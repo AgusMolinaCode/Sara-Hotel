@@ -32,7 +32,7 @@ export default async function page() {
 
   return (
     <div className="bg-gray-100">
-      <div className="relative">
+      <div className="relative" id="home">
         <Image
           src={urlFor(data[0].poster.asset).url()}
           //src="/images/cabaña1.jpg"

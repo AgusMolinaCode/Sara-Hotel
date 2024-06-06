@@ -56,7 +56,7 @@ const ServicesList = () => {
   ];
 
   return (
-    <div className="px-3 xl:px-20 py-2 md:py-14">
+    <div className="px-3 xl:px-20 py-2 md:py-14" id="services">
       <h2 className="text-xl md:text-2xl font-semibold text-gray-600">
         Discover the services we offer
       </h2>

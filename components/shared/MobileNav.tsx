@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Separator } from "@radix-ui/react-separator";
+import Link from "next/link";
 // import NavItems from "./NavItems";
 
 const MobileNav = () => {
@@ -28,7 +29,18 @@ const MobileNav = () => {
           <h1 className="text-3xl font-bold">SM Cabins</h1>
 
           <Separator className="border border-gray-50" />
-          {/* <NavItems /> */}
+          <Link href="#home" className="text-black font-semibold">
+            Home
+          </Link>
+          <Link href="#services" className="text-black font-semibold">
+            Services
+          </Link>
+          <Link href="#experiences" className="text-black font-semibold">
+            Experiences
+          </Link>
+          <Link href="#contact" className="text-black font-semibold">
+            Contact
+          </Link>
         </SheetContent>
       </Sheet>
     </nav>

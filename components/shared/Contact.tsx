@@ -27,7 +27,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="px-3 xl:px-20 py-2 md:py-14">
+    <div className="px-3 xl:px-20 py-2 md:py-14" id="contact">
       <h2 className="text-xl md:text-2xl font-semibold text-gray-600">
         We're here to help
       </h2>
