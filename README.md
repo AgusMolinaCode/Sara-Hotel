@@ -2,6 +2,11 @@
 
 Este proyecto es una landing page desarrollada con Next.js, Shadcn, Sanity.io, Zod y TypeScript. La página está diseñada para promocionar el alquiler de cabañas o habitaciones de hotel, con opciones personalizables a través de Sanity y un formulario validado con Zod que redirige directamente a booking.com con los datos seleccionados.
 
+
+![Captura de pantalla 2024-06-06 131009](https://github.com/AgusMolinaCode/Sara-Hotel/assets/105619330/e9b536d4-ecdc-4f37-924f-df395925ec90)
+
+
+
 ## Características
 
 - **Next.js**: Framework de React para aplicaciones web con renderizado del lado del servidor y generación de sitios estáticos.
