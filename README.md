@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Landing Page para Alquiler de Cabañas/Hotel
 
-## Getting Started
+Este proyecto es una landing page desarrollada con Next.js, Shadcn, Sanity.io, Zod y TypeScript. La página está diseñada para promocionar el alquiler de cabañas o habitaciones de hotel, con opciones personalizables a través de Sanity y un formulario validado con Zod que redirige directamente a booking.com con los datos seleccionados.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js**: Framework de React para aplicaciones web con renderizado del lado del servidor y generación de sitios estáticos.
+- **Shadcn**: Herramienta de estilización para crear una interfaz de usuario atractiva y moderna.
+- **Sanity.io**: CMS headless que permite la personalización y gestión de contenidos de manera sencilla.
+- **Zod**: Biblioteca de validación de esquemas que asegura la integridad de los datos introducidos en el formulario.
+- **TypeScript**: Superset de JavaScript que añade tipado estático, mejorando la robustez y mantenibilidad del código.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Personalización del Contenido**: Utiliza Sanity.io para administrar y personalizar el contenido de la landing page, permitiendo cambios dinámicos sin necesidad de modificar el código.
+- **Formulario de Reserva**: Formulario interactivo validado con Zod, que recoge los datos del usuario y los envía a booking.com para completar la reserva.
+- **Interfaz Moderna**: Diseño atractivo y responsivo, optimizado para una excelente experiencia de usuario en dispositivos móviles y de escritorio.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contribución
 
-## Learn More
+Las contribuciones son bienvenidas. Si tienes alguna mejora, sugerencia o reporte de errores, por favor abre un issue o envía un pull request.
 
-To learn more about Next.js, take a look at the following resources:
+## Licencia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
