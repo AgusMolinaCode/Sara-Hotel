@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
 import Image from "next/image";
+import Link from "next/link";
 
 const Contact = () => {
   useEffect(() => {
@@ -40,7 +41,7 @@ const Contact = () => {
           className="px-2 h-[600px] w-full md:w-full rounded-3xl cursor-pointer"
         />
         <div className="flex flex-wrap gap-4 items-center justify-center mt-8">
-          <a
+          <Link
             href="mailto:info@smcabins.com"
             className="flex items-center space-x-2 cursor-pointer hover:underline"
           >
@@ -52,8 +53,8 @@ const Contact = () => {
               className="w-10 h-10"
             />
             <p>info@smcabins.com</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://wa.me/11234567890"
             target="_blank"
             className="flex items-center space-x-2 cursor-pointer hover:underline"
@@ -66,8 +67,8 @@ const Contact = () => {
               className="w-10 h-10"
             />
             <p>+1 (123) 4510-7890</p>
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://www.google.com/maps/search/?api=1&query=Huemul+2256,+CP+8400+Bariloche"
             target="_blank"
             className="flex items-center space-x-2 cursor-pointer hover:underline"
@@ -80,7 +81,7 @@ const Contact = () => {
               className="w-10 h-10"
             />
             <p>Huemul 2256, CP 8400 Bariloche</p>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -10,17 +10,22 @@ export default {
       type: 'string',
     },
     {
+      title: 'TitleOrange',
+      name: 'titleOrange',
+      type: 'string',
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      type: 'text',
+    },
+    {
       title: 'Poster',
       name: 'poster',
       type: 'image',
       options: {
         hotspot: true, // <-- Defaults to false
       },
-    },
-    {
-      title: 'Alt',
-      name: 'alt',
-      type: 'string',
     },
   ],
 }
